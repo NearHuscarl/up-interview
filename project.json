@@ -1,0 +1,16 @@
+{
+  "root": ".",
+  "targets": {
+    "generate-interview-repo": {
+      "executor": "@shared/executors:generate-interview-repo",
+      "options": {}
+    },
+    "build-docker": {
+      "dependsOn": ["generate-interview-repo"],
+      "command": "docker build -t up-interview ."
+    },
+    "run-docker": {
+      "command": "node docker/run-docker.mjs"
+    }
+  }
+}

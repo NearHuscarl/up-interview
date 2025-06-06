@@ -1,0 +1,10 @@
+{
+  "configurations": [
+    {
+      "type": "chrome",
+      "name": "ws://localhost:9229/a532784d-9495-46a2-b856-6dfa99d9a9f9",
+      "request": "launch",
+      "url": "ws://localhost:9229/a532784d-9495-46a2-b856-6dfa99d9a9f9"
+    }
+  ]
+}
