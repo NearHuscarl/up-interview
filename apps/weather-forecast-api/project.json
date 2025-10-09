@@ -1,0 +1,52 @@
+{
+  "name": "weather-forecast-api",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/weather-forecast-api/src",
+  "projectType": "application",
+  "tags": [],
+  "targets": {
+    "generateOpenApi": {
+      "inputs": ["{projectRoot}/**/*controller.ts", "{workspaceRoot}/tsoa.json", { "externalDependencies": ["tsoa"] }],
+      "command": "tsoa spec-and-routes --basePath api -c apps/weather-forecast-api/tsoa.json"
+    },
+    "build": {
+      "inputs": ["default", "^default", { "externalDependencies": ["webpack-cli"] }],
+      "dependsOn": ["^build", "generateOpenApi"],
+      "command": "webpack-cli build",
+      "outputs": ["{workspaceRoot}/dist/apps/weather-forecast-api"],
+      "options": {
+        "cwd": "apps/weather-forecast-api"
+      },
+      "configurations": {
+        "development": {
+          "args": ["--node-env=development"]
+        },
+        "production": {
+          "args": ["--node-env=production"]
+        }
+      }
+    },
+    "serve": {
+      "continuous": true,
+      "executor": "@nx/js:node",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "weather-forecast-api:build",
+        "runBuildTargetDependencies": false
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "weather-forecast-api:build:development"
+        },
+        "production": {
+          "buildTarget": "weather-forecast-api:build:production"
+        }
+      }
+    },
+    "test": {
+      "options": {
+        "passWithNoTests": true
+      }
+    }
+  }
+}

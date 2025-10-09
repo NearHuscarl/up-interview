@@ -1,0 +1,12 @@
+{
+  "entryFile": "apps/weather-forecast-api/src/main.ts",
+  "noImplicitAdditionalProperties": "throw-on-extras",
+  "controllerPathGlobs": ["apps/weather-forecast-api/src/**/*controller.ts"],
+  "spec": {
+    "outputDirectory": "apps/weather-forecast-api/src/generated",
+    "specVersion": 3
+  },
+  "routes": {
+    "routesDir": "apps/weather-forecast-api/src/generated"
+  }
+}

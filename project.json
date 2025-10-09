@@ -1,0 +1,26 @@
+{
+  "root": ".",
+  "targets": {
+    "generate-interview-repo": {
+      "executor": "@shared/executors:generate-interview-repo",
+      "options": {}
+    },
+    "publish-interview-repo": {
+      "dependsOn": ["generate-interview-repo"],
+      "executor": "@shared/executors:publish-interview-repo",
+      "options": {}
+    },
+    "unpublish-interview-repo": {
+      "executor": "@shared/executors:unpublish-interview-repo",
+      "options": {}
+    },
+    "build-docker": {
+      "dependsOn": ["generate-interview-repo"],
+      "command": "docker build -t nearhuscarl/up-interview ."
+    },
+    "push-docker": {
+      "dependsOn": ["build-docker"],
+      "command": "docker image push nearhuscarl/up-interview"
+    }
+  }
+}
